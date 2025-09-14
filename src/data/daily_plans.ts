@@ -1,12 +1,12 @@
-type WeekDay = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday";
-type Exercise = {
+export type WeekDay = "Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday";
+export type Exercise = {
     name: string;
     sets: number;
     reps: string | number;
     gif: string;
 }
 
-type WorkoutPlan = {
+export type WorkoutPlan = {
     day: WeekDay;
     exercises: Exercise[];
 };

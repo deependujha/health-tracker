@@ -1,4 +1,9 @@
+"use client"
 import { Section, Small } from "@/components/ui/helpers";
+import { ExerciseCard } from "@/components/exercise_card";
+import { dailyPlans } from "@/data/daily_plans";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 type WorkoutsPageProps = {
     data: FitnessData;
@@ -7,48 +12,70 @@ type WorkoutsPageProps = {
         toggleWorkoutDone: ( date: string ) => void;
         deleteWorkout: ( date: string ) => void;
     };
-    selectedDate: string;
-    setSelectedDate: ( date: string ) => void;
-
 }
 
-export default function WorkoutsPage( { data, store, selectedDate, setSelectedDate }: WorkoutsPageProps ) {
+const weekDays = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
+
+export default function WorkoutsPage( { data, store }: WorkoutsPageProps ) {
+    const [ selectedDay, setSelectedDay ] = useState<string>( "Monday" );
+
+    useEffect( () => {
+        const today = new Date();
+        const options: Intl.DateTimeFormatOptions = { weekday: 'long' };
+        const dayName = today.toLocaleDateString( 'en-US', options );
+        setSelectedDay( dayName );
+    }, [] );
+
     return ( <div className="space-y-4">
-        <Section title={ `Workouts — ${selectedDate}` }>
-            <div className="mb-2 flex gap-2 items-center">
-                <input type="date" value={ selectedDate } onChange={ ( e ) => setSelectedDate( e.target.value ) } className="bg-black/40 border border-white/10 rounded px-2 py-1 text-white" />
-                <button onClick={ () => store.toggleWorkoutDone( selectedDate ) } className="px-3 py-2 rounded bg-white/6">Toggle done</button>
-                <button onClick={ () => store.deleteWorkout( selectedDate ) } className="px-3 py-2 rounded bg-black/60">Delete</button>
+        <Section title={ `Workouts — ${selectedDay}` }>
+            <div>
+                {
+                    weekDays.map( day => (
+                        <span key={ day } className={ `px-3 py-1 rounded-full mr-2 cursor-pointer select-none ${day === selectedDay ? "bg-primary text-white font-bold bg-gray-800" : "bg-muted text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"}` }>
+                            <button onClick={ () => setSelectedDay( day ) }>
+                                { day }
+                            </button>
+                        </span>
+                    ) )
+                }
             </div>
-
-            <div className="space-y-2">
-                { ( data.workouts[ selectedDate ]?.plan || [] ).map( ( ex ) => (
-                    <div key={ ex.id } className="p-2 border border-white/6 rounded flex justify-between items-center">
-                        <div>
-                            <div className="font-medium">{ ex.name }</div>
-                            <Small>{ ex.sets }x{ ex.reps } { ex.weightKg ? `• ${ex.weightKg}kg` : '' }</Small>
-                        </div>
-                        <div className="flex gap-2">
-                            <button onClick={ () => {
-                                // remove exercise
-                                const newPlan = ( data.workouts[ selectedDate ]?.plan || [] ).filter( p => p.id !== ex.id );
-                                store.upsertWorkout( selectedDate, newPlan );
-                            } } className="px-2 py-1 rounded bg-black/60">Remove</button>
-                        </div>
+        </Section>
+        <div>
+            <div> Today's day: { selectedDay }</div>
+            {
+                dailyPlans.filter( plan => plan.day === selectedDay ).map( plan => (
+                    <div key={ plan.day } className="space-y-4">
+                        <h2 className="text-2xl font-bold">{ plan.day === selectedDay ? `Today's workout plan (${selectedDay})` : `Workout for ${plan.day}` }</h2>
+                        { plan.exercises.map( ( exercise ) => (
+                            <div>
+                                <ExerciseCard
+                                    key={ exercise.name }
+                                    exerciseName={ exercise.name }
+                                    sets={ exercise.sets }
+                                    reps={ typeof exercise.reps === "number" ? exercise.reps : exercise.reps }
+                                    gifUrl={ exercise.gif }
+                                    className="hover:scale-[1.02]"
+                                />
+                            </div>
+                        ) ) }
                     </div>
-                ) ) }
-            </div>
-        </Section>
-
-        <Section title={ 'Preset 5-day plan' }>
-            <ol className="list-decimal list-inside text-sm space-y-2">
-                <li><strong>Day 1 (Push):</strong> Floor press, overhead press, side raises, wall push-ups, plank</li>
-                <li><strong>Day 2 (Pull):</strong> Bent-over rows, shrugs, hammer curls, reverse fly, bird dog</li>
-                <li><strong>Day 3 (Legs+Core):</strong> Goblet squats, Romanian DL, lunges, calf raises, Russian twists</li>
-                <li><strong>Day 4 (Circuit):</strong> 4 rounds: goblet squat, row, OHP, DL, plank</li>
-                <li><strong>Day 5 (Active):</strong> Brisk walk or mobility</li>
-            </ol>
-        </Section>
-    </div>
+                ) )
+            }
+            {/* if no workout plan exists for the selected day */ }
+            { dailyPlans.filter( plan => plan.day === selectedDay ).length === 0 && (
+                <div className="flex flex-col items-center justify-center space-y-4 mt-10">
+                    <Image
+                        className="rounded-2xl"
+                        src="/exercise/chill.gif"
+                        alt="No workout plan"
+                        width={ 600 }
+                        height={ 600 }
+                    />
+                    <div className="text-muted">Relax & enjoy your { selectedDay }.</div>
+                </div>
+            ) }
+        </div>
+    </div >
     )
 }
+

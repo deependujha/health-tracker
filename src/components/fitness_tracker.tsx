@@ -133,7 +133,7 @@ export function FitnessTracker() {
   return (
     <div className="min-h-screen bg-black text-white font-sans">
       <div className="max-w-7xl mx-auto p-4">
-        <header className="flex items-center justify-between py-4  sticky top-0 z-50 pb-8">
+        <header className="flex items-center justify-between py-4  sticky top-0 z-50 pb-8 bg-black/90 backdrop-blur">
           <div>
             <h1 className="text-2xl font-bold">Fitness Tracker</h1>
             <Small>Local-only • Private • No servers</Small>
@@ -159,7 +159,7 @@ export function FitnessTracker() {
 
         <main className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Left column: small dashboard */ }
-          <div className="lg:col-span-1 space-y-4">
+          <div className="lg:col-span-1 space-y-4 sticky top-20 self-start">
             <Section title={ `Hello, ${data.profile.name}` }>
               <div className="space-y-2">
                 <div className="text-sm">Target: <strong>{ data.targets.goalWeight } kg</strong></div>
@@ -263,7 +263,7 @@ export function FitnessTracker() {
             ) }
 
             { route === 'workouts' && (
-              <WorkoutsPage data={ data } store={ store } selectedDate={ selectedDate } setSelectedDate={ setSelectedDate } />
+              <WorkoutsPage data={ data } store={ store }/>
             ) }
 
             { route === 'meals' && (
