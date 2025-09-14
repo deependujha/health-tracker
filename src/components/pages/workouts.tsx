@@ -23,8 +23,8 @@ export default function WorkoutsPage( ) {
                 <div>
                     {
                         weekDays.map( day => (
-                            <span key={ day } className={ `px-3 py-1 rounded-full mr-2 cursor-pointer select-none ${day === selectedDay ? "bg-primary text-white font-bold bg-gray-800" : "bg-muted text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"}` }>
-                                <button onClick={ () => setSelectedDay( day ) }>
+                            <span key={ day } className={ `px-3 py-1 rounded-full mr-2 select-none ${day === selectedDay ? "bg-primary text-white font-bold bg-gray-800" : "bg-muted text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"}` }>
+                                <button onClick={ () => setSelectedDay( day ) } className="cursor-pointer">
                                     { day }
                                 </button>
                             </span>
