@@ -11,7 +11,57 @@ export type WorkoutPlan = {
     exercises: Exercise[];
 };
 
-export const dailyPlans: WorkoutPlan[] = [
+const MondayPlan: WorkoutPlan[] = [
+    {
+        day: "Monday",
+        exercises: [
+            {
+                name: "Jumping Jacks",
+                sets: 2,
+                reps: "30 seconds",
+                gif: "/exercise/JUMPING_JACK.gif"
+            },
+            {
+                name: "Stretches",
+                sets: 3,
+                reps: "10-15",
+                gif: "/exercise/STRETCHES.gif"
+            },
+            {
+                name: "Push Ups",
+                sets: 3,
+                reps: "8-12",
+                gif: "/exercise/PUSH_UP.gif"
+            },
+            {
+                name: "Dumbell Bench Press",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/chest/DB_BP.gif"
+            },
+            {
+                name: "Dumbell Fly",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/chest/DB_INC_FLY.gif"
+            },
+            {
+                name: "Overhead Dumbbell Press",
+                sets: 3,
+                reps: "8-12",
+                gif: "/exercise/shoulder/DB_SHD_PRESS.gif"
+            },
+            {
+                name: "Dumbbell Overhead Tricep Extension",
+                sets: 3,
+                reps: "10-15",
+                gif: "/exercise/arms/DB_TRI_EXT.gif"
+            }
+        ]
+    },
+]
+
+const FridayPlan: WorkoutPlan[] = [
     {
         day: "Friday",
         exercises: [
@@ -72,3 +122,6 @@ export const dailyPlans: WorkoutPlan[] = [
         ]
     },
 ]
+
+
+export const dailyPlans: WorkoutPlan[] = [ ...MondayPlan, ...FridayPlan ]
