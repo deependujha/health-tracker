@@ -1,22 +1,13 @@
 "use client"
-import { Section, Small } from "@/components/ui/helpers";
+import { Section } from "@/components/ui/helpers";
 import { ExerciseCard } from "@/components/exercise_card";
 import { dailyPlans } from "@/data/daily_plans";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-type WorkoutsPageProps = {
-    data: FitnessData;
-    store: {
-        upsertWorkout: ( date: string, plan: { id: string; name: string; sets: number; reps: number; weightKg?: number; }[] ) => void;
-        toggleWorkoutDone: ( date: string ) => void;
-        deleteWorkout: ( date: string ) => void;
-    };
-}
-
 const weekDays = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
 
-export default function WorkoutsPage( { data, store }: WorkoutsPageProps ) {
+export default function WorkoutsPage( ) {
     const [ selectedDay, setSelectedDay ] = useState<string>( "Monday" );
 
     useEffect( () => {
@@ -47,7 +38,7 @@ export default function WorkoutsPage( { data, store }: WorkoutsPageProps ) {
                 dailyPlans.filter( plan => plan.day === selectedDay ).map( plan => (
                     <div key={ plan.day } className="space-y-4">
                         { plan.exercises.map( ( exercise ) => (
-                            <div>
+                            <div key={ exercise.name }>
                                 <ExerciseCard
                                     key={ exercise.name }
                                     exerciseName={ exercise.name }

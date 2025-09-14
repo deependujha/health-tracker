@@ -11,7 +11,7 @@ export const ls = {
       return fallback;
     }
   },
-  set: ( key: string, value: any ) => {
+  set: ( key: string, value: string | object ) => {
     if ( typeof window === 'undefined' ) return;
     try {
       localStorage.setItem( key, JSON.stringify( value ) );

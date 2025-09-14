@@ -1,4 +1,4 @@
-import { Section, Small } from '@/components/ui/helpers';
+import { Section } from '@/components/ui/helpers';
 import { DEFAULT, ls } from "@/components/utils"
 
 

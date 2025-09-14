@@ -42,7 +42,7 @@ import { Section, Small } from '@/components/ui/helpers';
 import ContributionGrid from '@/components/contribution_grid';
 import { useFitnessData } from "@/hooks/fitness_data";
 import SettingPage from "@/components/pages/settings";
-import { todayISO, rangeDays, uid } from "@/components/utils"
+import { todayISO, rangeDays } from "@/components/utils"
 import WorkoutsPage from './pages/workouts';
 
 
@@ -263,7 +263,7 @@ export function FitnessTracker() {
             ) }
 
             { route === 'workouts' && (
-              <WorkoutsPage data={ data } store={ store }/>
+              <WorkoutsPage />
             ) }
 
             { route === 'meals' && (
