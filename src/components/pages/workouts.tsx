@@ -27,25 +27,25 @@ export default function WorkoutsPage( { data, store }: WorkoutsPageProps ) {
     }, [] );
 
     return ( <div className="space-y-4">
-        <Section title={ `Workouts — ${selectedDay}` }>
-            <div>
-                {
-                    weekDays.map( day => (
-                        <span key={ day } className={ `px-3 py-1 rounded-full mr-2 cursor-pointer select-none ${day === selectedDay ? "bg-primary text-white font-bold bg-gray-800" : "bg-muted text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"}` }>
-                            <button onClick={ () => setSelectedDay( day ) }>
-                                { day }
-                            </button>
-                        </span>
-                    ) )
-                }
-            </div>
-        </Section>
+        <div className="sticky top-20 self-start z-5000 bg-black/90 backdrop-blur py-4">
+            <Section title={ `Workouts 🏋🏻‍♀️` }>
+                <div>
+                    {
+                        weekDays.map( day => (
+                            <span key={ day } className={ `px-3 py-1 rounded-full mr-2 cursor-pointer select-none ${day === selectedDay ? "bg-primary text-white font-bold bg-gray-800" : "bg-muted text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"}` }>
+                                <button onClick={ () => setSelectedDay( day ) }>
+                                    { day }
+                                </button>
+                            </span>
+                        ) )
+                    }
+                </div>
+            </Section>
+        </div>
         <div>
-            <div> Today's day: { selectedDay }</div>
             {
                 dailyPlans.filter( plan => plan.day === selectedDay ).map( plan => (
                     <div key={ plan.day } className="space-y-4">
-                        <h2 className="text-2xl font-bold">{ plan.day === selectedDay ? `Today's workout plan (${selectedDay})` : `Workout for ${plan.day}` }</h2>
                         { plan.exercises.map( ( exercise ) => (
                             <div>
                                 <ExerciseCard
