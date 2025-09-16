@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const weekDays = [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
 
-export default function WorkoutsPage( ) {
+export default function WorkoutsPage() {
     const [ selectedDay, setSelectedDay ] = useState<string>( "Monday" );
 
     useEffect( () => {
@@ -56,6 +56,7 @@ export default function WorkoutsPage( ) {
             { dailyPlans.filter( plan => plan.day === selectedDay ).length === 0 && (
                 <div className="flex flex-col items-center justify-center space-y-4 mt-10">
                     <Image
+                        unoptimized={ true }
                         className="rounded-2xl"
                         src="/exercise/chill.gif"
                         alt="No workout plan"
