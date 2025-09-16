@@ -105,6 +105,65 @@ const TuesdayPlan: WorkoutPlan[] = [
     },
 ]
 
+const WednesdayPlan: WorkoutPlan[] = [
+    {
+        day: "Wednesday",
+        exercises: [
+            {
+                name: "Jumping Jacks",
+                sets: 2,
+                reps: "30 seconds",
+                gif: "/exercise/JUMPING_JACK.gif"
+            },
+            {
+                name: "Stretches",
+                sets: 3,
+                reps: "10-15",
+                gif: "/exercise/STRETCHES.gif"
+            },
+            {
+                name: "Biceps Curl",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/biceps/DB_BC_CURL.gif"
+            },
+            {
+                name: "Hammer Curl",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/biceps/DB_HAM_CURL.gif"
+            },
+            {
+                name: "Reverse Curl",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/biceps/dumbbell-reverse-grip-curl-exercise.gif"
+            },
+            {
+                name: "Concentration Curl",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/biceps/Concentration-Curl.gif"
+            },
+            {
+                name: "Wrist Curl",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/biceps/REV_DB_WRIST_CURL.gif"
+            },
+        ]
+    },
+]
+
+// const ThursdayPlan: WorkoutPlan[] = [
+//     {
+//         day: "Thursday",
+//         exercises: [
+//             {}
+//         ]
+//     },
+// ]
+
 const FridayPlan: WorkoutPlan[] = [
     {
         day: "Friday",
@@ -168,4 +227,4 @@ const FridayPlan: WorkoutPlan[] = [
 ]
 
 
-export const dailyPlans: WorkoutPlan[] = [ ...MondayPlan, ...TuesdayPlan, ...FridayPlan ]
+export const dailyPlans: WorkoutPlan[] = [ ...MondayPlan, ...TuesdayPlan, ...WednesdayPlan, ...FridayPlan ]
