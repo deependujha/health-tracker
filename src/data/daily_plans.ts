@@ -90,16 +90,16 @@ const TuesdayPlan: WorkoutPlan[] = [
                 gif: "/exercise/back/DB_LOW.gif"
             },
             {
-                name: "Dumbell Shrugs",
-                sets: 3,
-                reps: "12-15",
-                gif: "/exercise/back/DB_SHRUG.gif"
-            },
-            {
                 name: "Dumbell Reverse Fly",
                 sets: 3,
                 reps: "12-15",
                 gif: "/exercise/back/dumbell_reverse_fly.gif"
+            },
+            {
+                name: "Dumbell Shrugs",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/back/DB_SHRUG.gif"
             },
         ]
     },
