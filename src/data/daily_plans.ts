@@ -55,7 +55,7 @@ const MondayPlan: WorkoutPlan[] = [
                 name: "Dumbbell Overhead Tricep Extension",
                 sets: 3,
                 reps: "10-15",
-                gif: "/exercise/arms/DB_TRI_EXT.gif"
+                gif: "/exercise/triceps/DB_TRI_EXT.gif"
             }
         ]
     },
@@ -155,14 +155,55 @@ const WednesdayPlan: WorkoutPlan[] = [
     },
 ]
 
-// const ThursdayPlan: WorkoutPlan[] = [
-//     {
-//         day: "Thursday",
-//         exercises: [
-//             {}
-//         ]
-//     },
-// ]
+const ThursdayPlan: WorkoutPlan[] = [
+    {
+        day: "Thursday",
+        exercises: [
+            {
+                name: "Jumping Jacks",
+                sets: 2,
+                reps: "30 seconds",
+                gif: "/exercise/JUMPING_JACK.gif"
+            },
+            {
+                name: "Stretches",
+                sets: 3,
+                reps: "10-15",
+                gif: "/exercise/STRETCHES.gif"
+            },
+            {
+                name: "Tricep Bench Dips",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/triceps/BENCH_DIPS.gif"
+            },
+            {
+                name: "Close grip push-ups",
+                sets: 3,
+                reps: "6-10",
+                gif: "/exercise/triceps/CG_PUSH_UP.gif"
+            },
+            {
+                name: "Overhead Extension",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/triceps/DB_TRI_EXT.gif"
+            },
+            {
+                name: "Skull Crushers",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/triceps/Dumbbell-Skull-Crusher.gif"
+            },
+            {
+                name: "Bent-over Kickbacks",
+                sets: 3,
+                reps: "12-15",
+                gif: "/exercise/triceps/Bent_over_kickback.gif"
+            },
+        ]
+    },
+]
 
 const FridayPlan: WorkoutPlan[] = [
     {
@@ -227,4 +268,4 @@ const FridayPlan: WorkoutPlan[] = [
 ]
 
 
-export const dailyPlans: WorkoutPlan[] = [ ...MondayPlan, ...TuesdayPlan, ...WednesdayPlan, ...FridayPlan ]
+export const dailyPlans: WorkoutPlan[] = [ ...MondayPlan, ...TuesdayPlan, ...WednesdayPlan, ...ThursdayPlan, ...FridayPlan ]
